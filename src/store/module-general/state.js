@@ -1,0 +1,20 @@
+export default {
+  songTitle: '',
+  songArtist: '',
+  songAttribution: '',
+  auctx: null,
+  song: null,
+  duration: 0,
+  start: 1,
+  beatoffset: 0,
+  bpm: 0,
+  beats: null,
+  peaks: null,
+  position: 0,
+  measures: 0,
+  flagbeats: [],
+  slashsound: null,
+  bashsound: null,
+  isplaying: false,
+  mobileView: true
+}
