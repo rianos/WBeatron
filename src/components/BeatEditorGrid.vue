@@ -1,10 +1,8 @@
 <template>
   <div class='scrollmenu'>
-    <q-btn flat round dense icon="chevron_left" color="blue" @click='previoubeat' />
     <span v-for="item in items" :key="item.beat">
      <beat-editor-item :bg='item.background' :color='item.color' :beat='item.beat' :mark='item.mark' @gotobeat='gotobeat'/>
     </span>
-    <q-btn flat round dense icon="chevron_right" color="blue" @click='nextbeat' />
   </div>
 </template>
 
@@ -81,11 +79,11 @@ export default {
           notes = 20
       }
       // let inicio = m
-      let previousnotes = 5
+      let previousnotes = 4
       let inicio = m - step * previousnotes
       for (let i = 0; i < notes; i++) {
         let beat = inicio + (i * step)
-        let color = 'light'
+        let color = 'grey-7'
         c = 0
         for (let j = 0; j < fb.length; j++) {
           if (fb[j] >= beat && fb[j] < (beat + step)) {
@@ -105,12 +103,15 @@ export default {
           color = 'purple'
         }
         let background = 'text-white'
-        if (i === previousnotes) {
-          background = 'round-borders'
-        }
         let mark = ((beat - step) % (step * (this.typemeasure)) / step)
         if (mark < 0) {
           mark = '-'
+        }
+        if (mark === 0) {
+          background = 'round-borders'
+        }
+        if (i === previousnotes) {
+          background = background + ' bordermark'
         }
         let item = {
           beat: beat,
