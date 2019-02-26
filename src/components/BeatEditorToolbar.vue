@@ -11,8 +11,8 @@
   <q-btn flat round dense icon="chevron_left" color="blue" @click='previoubeat' />
   <q-btn flat round dense icon="chevron_right" color="blue" @click='nextbeat' />
   <q-btn flat round dense icon="fast_forward" color="blue" @click='nextmeasure' />
-  <q-btn dense icon="dashboard" color="blue" :label='this.typemeasure' @click='changegrid' />
-  <q-chip  color='secondary'>Measure: {{measure}} / {{(beat % 4) + 1}}</q-chip>
+  <q-btn flat icon="dashboard" color="blue" :label='this.typemeasure' @click='changegrid' />
+  <q-chip  color='secondary'>{{measure}} / {{(beat % 4) + 1}}</q-chip>
 </q-toolbar>
 </template>
 
