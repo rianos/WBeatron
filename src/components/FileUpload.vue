@@ -20,11 +20,11 @@ export default {
   methods: {
     localuploadmp3 (files) {
       let slashsound = new Howl({
-        src: ['assets/Slash.wav'],
+        src: ['statics/Slash.wav'],
         volume: 1
       })
       let bashsound = new Howl({
-        src: ['assets/Bash.wav'],
+        src: ['statics/Bash.wav'],
         volume: 1
       })
       this.$store.commit('general/slashsound', slashsound)
