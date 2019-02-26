@@ -42,7 +42,7 @@ export default {
       for (let i = 1; i < lines.length - 1; i++) {
         let data = lines[i].split(',')
         // Prueba
-        let beat = ((data[0] - 1) * 4 + (data[1] - 1)) * 100 //  para redondear indice entero
+        let beat = parseInt(((data[0] - 1) * 4 + (data[1] - 1)) * 100) //  para redondear indice entero
         if (data[2].indexOf('4') === -1) {
           continue
         }

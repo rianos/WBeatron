@@ -56,7 +56,7 @@ export default {
         let beatp = ((flag - ((measure - 1) * 4 * 100)) / 100) + 1
         let level = '1234'
         head = ''
-        head = measure + ',' + beatp + ',' + level
+        head = measure + ',' + beatp.toFixed(2) + ',' + level
         for (let j = 0; j < pattern.length; j++) {
           if (pattern[j] === 0) {
             continue
