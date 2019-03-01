@@ -3,7 +3,7 @@
   <q-step default title="Song Web File" subtitle="Select WBE File">
     <import-wbe  @success='nextStep'/>
   </q-step>
-  <q-step title="MP3 File" subtitle="Load music file">
+  <q-step title="Song Music MP3/OGG File" subtitle="Load music file">
     <file-upload  @success='gobeatcoder'></file-upload>
   </q-step>
 </q-stepper>

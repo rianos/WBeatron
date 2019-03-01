@@ -13,6 +13,7 @@
     <br>
    <import-stepper v-if='this.select === 1'/>
    <import-web-stepper v-if='this.select === 0' />
+   <import-beat-saber-stepper v-if='this.select == 2' />
    <br><br>
    <q-chip icon="save_alt" square  pointing='down' color="primary">
      Export Project
@@ -25,6 +26,7 @@
 import ImportStepper from 'components/ImportStepper'
 import ExportStepper from 'components/ExportStepper'
 import ImportWebStepper from 'components/ImportWebStepper'
+import ImportBeatSaberStepper from 'components/ImportBeatSaberStepper'
 export default {
   // name: 'PageName',
   data () {
@@ -38,6 +40,10 @@ export default {
         {
           label: 'Web Editor',
           value: 0
+        },
+        {
+          label: 'Beat Saber',
+          value: 2
         }
       ]
     }
@@ -45,6 +51,7 @@ export default {
   components: {
     ImportStepper,
     ImportWebStepper,
+    ImportBeatSaberStepper,
     ExportStepper
   }
 }

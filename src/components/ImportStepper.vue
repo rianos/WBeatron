@@ -3,7 +3,7 @@
   <q-step default title="Song Meta File" subtitle="Select Meta File">
     <import-meta  @success='nextStep'/>
   </q-step>
-  <q-step title="MP3 File" subtitle="Load music file">
+  <q-step title="Music File MP3/OGG" subtitle="Load music file">
     <file-upload  @success='nextStep'></file-upload>
   </q-step>
   <q-step title="Beat Data File" subtitle="Select Beat Data CSV file" >
