@@ -1,6 +1,6 @@
 <template>
 <div>
-  <q-uploader hide-upload-button auto-expand @add='localuploadmp3' url='' extensions='.mp3'/>
+  <q-uploader hide-upload-button auto-expand @add='localuploadmp3' url='' extensions='.mp3,.ogg'/>
 </div>
 </template>
 
