@@ -48,6 +48,7 @@ export default {
     items () {
       let items = []
       let m = this.beat()
+      let exactBeat = Math.round(m * 100)
       let fb = this.$store.state.general.flagbeats
       let c = 0
       let step = 50
@@ -110,8 +111,19 @@ export default {
         if (mark === 0) {
           background = 'round-borders'
         }
-        if (i === previousnotes) {
+        if (beat === exactBeat) {
           background = background + ' bordermark'
+        }
+        if (beat + step > exactBeat && beat < exactBeat) {
+          if (this.$store.state.general.isplaying) {
+            background = background + ' bordermark'
+          } else {
+            background = background + ' bordermarkINTER'
+          }
+        } else {
+          if (beat === exactBeat) {
+            background = background + ' bordermark'
+          }
         }
         let item = {
           beat: beat,

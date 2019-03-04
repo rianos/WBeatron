@@ -30,4 +30,10 @@ export default {
   border-style: solid;
   border-color: black;
 }
+.bordermarkINTER {
+  border-width: 7px;
+  border-style: solid;
+  border-color: darkblue;
+
+}
 </style>
