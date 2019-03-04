@@ -8,9 +8,15 @@
         Beatron2000 Web Code Editor
         <div slot="subtitle">{{ songTitle }} {{ songArtist}} </div>
      </q-toolbar-title>
-    <q-btn flat round dense icon="home" @click='goHome'/>
-     <q-btn flat round dense icon="save" ref='savetoolbarbutton' @click='saveLocal'/>
-     <q-btn flat round dense icon="add_circle" @click='newSong'/>
+    <q-btn flat round dense icon="home" @click='goHome'>
+      <q-tooltip :delay='1000'>Go to <b>Main Page</b></q-tooltip>
+    </q-btn>
+     <q-btn flat round dense icon="save" ref='savetoolbarbutton' @click='saveLocal'>
+       <q-tooltip :delay='1000'>Generate and Save <b>WBE export file</b> </q-tooltip>
+     </q-btn>
+     <q-btn flat round dense icon="add_circle" @click='newSong'>
+       <q-tooltip :delay='1000'>Create <b>new</b> Project</q-tooltip>
+     </q-btn>
   </q-toolbar>
   <q-tabs animated inverted >
       <q-route-tab slot="title" icon="queue_music" to="/songdetails"  default hide="label" label="Song Details" />

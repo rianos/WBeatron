@@ -1,11 +1,15 @@
 <template>
   <div class='column flex-center'>
     <div class="row group">
-     <q-btn flat round dense icon="chevron_left" color="blue" @click='previousflagbeat' />
+     <q-btn flat round dense icon="chevron_left" color="blue" @click='previousflagbeat'>
+       <q-tooltip :delay='1000'>Go to <b>previous</b> beat with targets</q-tooltip>
+     </q-btn>
      <beat-item-special :value='this.state[13]' position=13 @updated='update'/>
      <beat-item-special :value='this.state[14]' position=14 @updated='update'/>
      <beat-item-special :value='this.state[15]' position=15 @updated='update'/>
-     <q-btn flat round dense icon="chevron_right" color="blue" @click='nextflagbeat' />
+     <q-btn flat round dense icon="chevron_right" color="blue" @click='nextflagbeat'>
+       <q-tooltip :delay='1000'>Go to <b>next</b> beat with targets</q-tooltip>
+     </q-btn>
     </div>
     <div class="row group">
      <beat-item-normal :value='this.state[1]' position=1 @updated='update'/>

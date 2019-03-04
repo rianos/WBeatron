@@ -7,9 +7,8 @@ TODO
 - Edit & Paste beats
 - Beat Gallery
 - Different Levels design
-
+- Show subgrid when music is stopped
 
 BUGS
 ==============
 - Freeze error
-- Beat measure 4 click don't go to the exact beat

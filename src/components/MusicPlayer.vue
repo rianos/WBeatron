@@ -1,11 +1,24 @@
 <template>
 <div>
-<q-btn icon='play_circle_filled' dense flat  size="2rem" color='primary' @click='play' v-if='!this.playing' />
-<q-btn icon='pause_circle_filled' dense flat  size="2rem" color='primary' @click='stop' v-if='this.playing' />
-<q-btn icon='replay_5' dense flat  size="2rem" color='blue-grey' @click='back5sec'/>
-<q-btn icon='fast_rewind'  flat  size="1rem" color='blue-grey' @click='slower'/>
-<q-btn icon='fast_forward'  flat   size="1rem" color='blue-grey' @click='faster'/>
-<q-toggle v-model="checked" color='light' @input='updateMobileView' />
+<q-btn icon='play_circle_filled' dense flat  size="2rem" color='primary' @click='play' v-if='!this.playing'>
+  <q-tooltip :delay='1000'>Play song</q-tooltip>
+</q-btn>
+<q-btn icon='pause_circle_filled' dense flat  size="2rem" color='primary' @click='stop' v-if='this.playing'>
+  <q-tooltip :delay='1000'>Pause song</q-tooltip>
+</q-btn>
+<q-btn icon='replay_5' dense flat  size="2rem" color='blue-grey' @click='back5sec'>
+  <q-tooltip :delay='1000'>Rewind 5 seconds</q-tooltip>
+</q-btn>
+<q-btn icon='fast_rewind'  flat  size="1rem" color='blue-grey' @click='slower'>
+  <q-tooltip :delay='1000'><b>Slower playback</b><br>Press several times to apply the effect stronger</q-tooltip>
+</q-btn>
+<q-btn icon='fast_forward'  flat   size="1rem" color='blue-grey' @click='faster'>
+  <q-tooltip :delay='1000'><b>Faster playback</b><br>Press several times to apply the effect stronger</q-tooltip>
+</q-btn>
+<q-toggle ref='editort' v-model="checked" color='light' @input='updateMobileView'>
+  <q-tooltip :delay='1000' v-show='this.checked'>Beat Editor <b>DISABLED</b> when music is playing<br>Use this option if in mobile for performance reasons</q-tooltip>
+  <q-tooltip :delay='1000' v-show='!this.checked'>Beat Editor <b>ENABLED</b> when music is playing<br>Recommended option in desktop</q-tooltip>
+</q-toggle>
 <q-slider  v-model="selectedValue"  :min="0" :max="this.duration" :lavel-value='Math.round(this.selectedValue)' label-always @input="seek"/>
 </div>
 </template>

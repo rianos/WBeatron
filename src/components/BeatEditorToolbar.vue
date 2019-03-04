@@ -1,18 +1,35 @@
 <template>
  <q-toolbar color="dark" inverted>
-  <q-chip color='primary'>
+  <span>
+   <q-tooltip :delay='1000'>Exact Beat Position in Editor<br><b>Click to enter beat number to navigate</b></q-tooltip>  <q-chip color='primary'>
     <q-popover>
       <q-input numeric-keyboard-toggle autofocus inverted @change='gotospebeat' :value='parseInt(this.reference)' type='number' />
     </q-popover>
     {{reference}}
    </q-chip>
-  <q-btn flat round dense icon="hearing" color="blue" @click='playpreview' />
-  <q-btn flat round dense icon="fast_rewind" color="blue" @click='previousmeasure' />
-  <q-btn flat round dense icon="chevron_left" color="blue" @click='previoubeat' />
-  <q-btn flat round dense icon="chevron_right" color="blue" @click='nextbeat' />
-  <q-btn flat round dense icon="fast_forward" color="blue" @click='nextmeasure' />
-  <q-btn flat icon="dashboard" color="blue" :label='this.typemeasure' @click='changegrid' />
-  <q-chip  color='secondary'>{{measure}} / {{(beat % 4) + 1}}</q-chip>
+  </span>
+  <q-btn flat round dense icon="hearing" color="blue" @click='playpreview'>
+    <q-tooltip :delay='1000'><b>Playback some seconds</b><br>and then stop to hear how the new target sounds</q-tooltip>
+  </q-btn>
+  <q-btn flat round dense icon="fast_rewind" color="blue" @click='previousmeasure'>
+    <q-tooltip :delay='1000'>Go to <b>previous</b> measure</q-tooltip>
+  </q-btn>
+  <q-btn flat round dense icon="chevron_left" color="blue" @click='previoubeat'>
+    <q-tooltip :delay='1000'>Go to <b>previous</b> beat</q-tooltip>
+  </q-btn>
+  <q-btn flat round dense icon="chevron_right" color="blue" @click='nextbeat'>
+    <q-tooltip :delay='1000'>Go to <b>next</b> beat</q-tooltip>
+  </q-btn>
+  <q-btn flat round dense icon="fast_forward" color="blue" @click='nextmeasure'>
+    <q-tooltip :delay='1000'>Go to <b>next</b> measure</q-tooltip>
+  </q-btn>
+  <q-btn flat icon="dashboard" color="blue" :label='this.typemeasure' @click='changegrid'>
+    <q-tooltip :delay='1000'>Change <b>beats per measure</b> displayed.<br>Press several times to change different modes</q-tooltip>
+  </q-btn>
+  <q-chip  color='secondary'>
+    <q-tooltip :delay='1000'>Meausure  {{measure}} / Beat  {{(beat % 4) + 1}}</q-tooltip>
+    {{measure}} / {{(beat % 4) + 1}}
+  </q-chip>
 </q-toolbar>
 </template>
 
