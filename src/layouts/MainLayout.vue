@@ -9,7 +9,7 @@
         <div slot="subtitle">{{ songTitle }} {{ songArtist}} </div>
      </q-toolbar-title>
     <q-btn flat round dense icon="home" @click='goHome'/>
-     <q-btn flat round dense icon="save" @click='saveLocal'/>
+     <q-btn flat round dense icon="save" ref='savetoolbarbutton' @click='saveLocal'/>
      <q-btn flat round dense icon="add_circle" @click='newSong'/>
   </q-toolbar>
   <q-tabs animated inverted >
@@ -19,25 +19,24 @@
     </q-tabs>
   </q-layout-header>
   <q-page-container>
-    <router-view />
+    <router-view @autosave='autosave'/>
   </q-page-container>
+  <export-stepper v-show='false' ref='exporterAux'/>
 </q-layout>
 </template>
 <script>
 import {LocalStorage} from 'quasar'
+import ExportStepper from 'components/ExportStepper'
 export default {
   name: 'MainLayout',
+  components: {
+    ExportStepper
+  },
   data () {
     return {}
   },
   methods: {
-    goHome () {
-      this.$router.push('/')
-    },
-    newSong () {
-      this.$router.push('/asistant')
-    },
-    saveLocal () {
+    autosave () {
       let web = {
         songTitle: this.$store.state.general.songTitle,
         songArtist: this.$store.state.general.songArtist,
@@ -50,14 +49,16 @@ export default {
         mobileWeb: this.$store.state.general.mobileView
       }
       LocalStorage.set('saved_file', web)
-      this.$q.notify({
-        message: 'Project saved in local browser cache',
-        detail: 'Next time you open your browser, your work would be available\n\nYou will have to provide the MP3 again',
-        color: 'positive',
-        timeout: 6000,
-        icon: 'info',
-        position: 'center'
-      })
+    },
+    goHome () {
+      this.$router.push('/')
+    },
+    newSong () {
+      this.$router.push('/asistant')
+    },
+    saveLocal () {
+      this.autosave()
+      this.$refs.exporterAux.save_web()
     }
   },
   computed: {

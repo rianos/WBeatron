@@ -35,6 +35,7 @@ export default {
         }
         this.$store.commit('general/updateflagbeat', {index: index, pattern: state})
       }
+      this.$emit('autosave')
     },
     playpreview () {
       this.$refs.mp.playpreview()
