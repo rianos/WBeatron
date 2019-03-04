@@ -34,7 +34,7 @@ export default {
       }
     },
     timetobeat (time) {
-      let beatinplayer = parseInt(time * this.$store.state.general.bpm / 60 * 100 / 2) + 1
+      let beatinplayer = Math.round(time * 100)
       return beatinplayer
     },
     beatposition (note) {
@@ -51,8 +51,11 @@ export default {
       this.$store.commit('general/bpm', json._beatsPerMinute)
       for (let i = 0; i < json._notes.length; i++) {
         let data = json._notes[i]
+        if (data._type === 3) {
+          // IF a bomb we pass
+          continue
+        }
         let beat = this.timetobeat(data._time)
-        console.log(beat)
         if (beats[beat] === undefined) {
           beats[beat] = {
             pattern: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
