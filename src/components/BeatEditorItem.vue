@@ -33,7 +33,7 @@ export default {
 .bordermarkINTER {
   border-width: 7px;
   border-style: solid;
-  border-color: darkblue;
-
+  border-color: rgb(0, 69, 173);
 }
+
 </style>

@@ -1,8 +1,15 @@
 <template>
+  <div>
   <div class='scrollmenu'>
     <span v-for="item in items" :key="item.beat">
      <beat-editor-item :bg='item.background' :color='item.color' :beat='item.beat' :mark='item.mark' @gotobeat='gotobeat'/>
     </span>
+  </div>
+  <div v-if='!this.$store.state.general.isplaying' class='scrollmenu'>
+   <span v-for="item in subitems" :key="item.beat">
+     <beat-editor-item :bg='item.background' :color='item.color' :beat='item.beat' :mark='item.mark' @gotobeat='gotobeat'/>
+    </span>
+  </div>
   </div>
 </template>
 
@@ -45,6 +52,75 @@ export default {
     }
   },
   computed: {
+    subitems () {
+      let items = []
+      let m = this.beat()
+      let exactBeat = Math.round(m * 100)
+      let fb = this.$store.state.general.flagbeats
+      let step = 50
+      let notes = 0
+      switch (this.typemeasure) {
+        case 8:
+          step = 50
+          m = parseInt(m * 100 / step) * step
+          notes = 50
+          break
+        case 4:
+          step = 100
+          m = parseInt(m * 100 / step) * step
+          notes = 100
+          break
+        case 10:
+          step = 40
+          m = parseInt(m * 100 / step) * step
+          notes = 40
+          break
+        case 5:
+          step = 80
+          m = parseInt(m * 100 / step) * step
+          notes = 80
+          break
+        case 16:
+          step = 25
+          m = parseInt(m * 100 / step) * step
+          notes = 25
+      }
+      let inicio = m
+      for (let i = 0; i < notes; i++) {
+        let beat = inicio + i
+        let color = 'grey-5'
+        for (let j = 0; j < fb.length; j++) {
+          if (fb[j] === beat) {
+            color = 'primary'
+            break
+          }
+        }
+        let background = 'text-white'
+        let mark = i
+        if (beat < 0) {
+          color = 'red-2'
+          mark = 'X'
+        }
+        if (beat === 0) {
+          color = 'green-8'
+          mark = 'START'
+        }
+        if (mark === 0) {
+          background = 'round-borders'
+        }
+        if (beat === exactBeat) {
+          background = background + ' bordermark'
+        }
+        let item = {
+          beat: beat,
+          mark: mark,
+          color: color,
+          background: background
+        }
+        items.push(item)
+      }
+      return items
+    },
     items () {
       let items = []
       let m = this.beat()
@@ -105,8 +181,13 @@ export default {
         }
         let background = 'text-white'
         let mark = ((beat - step) % (step * (this.typemeasure)) / step)
-        if (mark < 0) {
-          mark = '-'
+        if (beat < 0) {
+          color = 'red-2'
+          mark = 'X'
+        }
+        if (beat === 0) {
+          color = 'green-8'
+          mark = 'START'
         }
         if (mark === 0) {
           background = 'round-borders'
@@ -148,6 +229,7 @@ div.scrollmenu span {
   display: inline-block;
   text-align: center;
   padding: 0px;
+  padding-bottom: 3px;
   text-decoration: none;
 }
 </style>
