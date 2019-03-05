@@ -3,6 +3,7 @@
     <q-btn outline icon="save_alt" color="primary" label='Save Meta file' @click='save_meta' />
     <q-btn outline icon="save_alt" color="primary" label='Save Beats file' @click='save_beats' />
     <q-btn c outline icon="save_alt" color="tertiary" label='Save Web format' @click='save_web' />
+    <q-btn c outline icon="file_copy" color="tertiary" label='Drop WBE file to clipboard' @click='save_web_clipboard' />
  </div>
 </template>
 
@@ -11,10 +12,25 @@ import { saveAs } from 'file-saver'
 export default {
   // name: 'ComponentName',
   data () {
-    return {}
+    return {
+    }
   },
   methods: {
-    save_web () {
+    writeText (str) {
+      return new Promise(function (resolve, reject) {
+        var success = false
+        function listener (e) {
+          e.clipboardData.setData('text/plain', str)
+          e.preventDefault()
+          success = true
+        }
+        document.addEventListener('copy', listener)
+        document.execCommand('copy')
+        document.removeEventListener('copy', listener)
+        success ? resolve() : reject(new Error('error copying to clipboard'))
+      })
+    },
+    generate_wbe () {
       let web = {
         songTitle: this.$store.state.general.songTitle,
         songArtist: this.$store.state.general.songArtist,
@@ -26,6 +42,14 @@ export default {
         flagbeats: this.$store.state.general.flagbeats,
         mobileWeb: this.$store.state.general.mobileWeb
       }
+      return web
+    },
+    save_web_clipboard () {
+      let web = this.generate_wbe()
+      this.writeText(JSON.stringify(web))
+    },
+    save_web () {
+      let web = this.generate_wbe()
       let filename = this.$store.state.general.songTitle.replace(/ /g, '-')
       filename = filename + '-web.wbe'
       let blob = new Blob([JSON.stringify(web)], {type: 'text/plain;charset=utf8'})
