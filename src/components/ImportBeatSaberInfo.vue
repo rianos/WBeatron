@@ -25,8 +25,15 @@ export default {
     }
   },
   methods: {
+    setOffset (val) {
+      let offset = 0
+      if (this.web.difficultyLevels[val].offset !== undefined) {
+        offset = this.web.difficultyLevels[val].offset
+      }
+      this.$store.commit('general/beatoffset', offset / 1000)
+    },
     udpdateOffset (val) {
-      this.$store.commit('general/beatoffset', this.web.difficultyLevels[val].offset / 1000)
+      this.setOffset(val)
       this.nextStep()
     },
     nextStep () {
@@ -38,7 +45,6 @@ export default {
       this.$store.commit('general/songArtist', this.web.songSubName)
       this.$store.commit('general/songAttribution', this.web.authorName)
       this.$store.commit('general/start', 1)
-      this.$store.commit('general/beatoffset', this.web.difficultyLevels[0].offset / 1000)
       this.$store.commit('general/bpm', this.web.beatsPerMinute)
       this.$store.commit('general/mobileView', false)
       for (let i = 0; i < this.web.difficultyLevels.length; i++) {
@@ -48,7 +54,8 @@ export default {
         }
         this.selectOptions.push(opcion)
       }
-      this.$store.commit('general/beatoffset', this.web.difficultyLevels[0].offset / 1000)
+      // By default we set the first level offset
+      this.setOffset(0)
     },
     localuploadjsoninfo (files) {
       var self = this

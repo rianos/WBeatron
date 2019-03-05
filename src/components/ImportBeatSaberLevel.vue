@@ -60,9 +60,7 @@ export default {
           beats[beat] = {
             pattern: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
           }
-          let flagbeats = this.$store.state.general.flagbeats
-          flagbeats.push(beat)
-          this.$store.commit('general/flagbeats', flagbeats)
+          this.$store.commit('general/addflagbeat', beat)
         }
         let matrix = [2, 6, 8, 4, 9, 3, 7, 5]
         let beatpos = this.beatposition(data)
