@@ -105,9 +105,6 @@ export default {
           color = 'green-8'
           mark = 'START'
         }
-        if (mark === 0) {
-          background = 'round-borders'
-        }
         if (beat === exactBeat) {
           background = background + ' bordermark'
         }
