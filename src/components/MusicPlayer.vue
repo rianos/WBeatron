@@ -62,7 +62,6 @@ export default {
         pbeat = fb[i]
       }
       let npos = (pbeat * 60 / this.$store.state.general.bpm / 100) + parseFloat(this.$store.state.general.beatoffset)
-      console.warn('pflag ' + beatinplayer + ' - ' + pbeat)
       this.song.seek(npos)
       this.$store.commit('general/iplaying', this.song.playing())
     },
@@ -79,7 +78,6 @@ export default {
         nbeat = fb[i]
       }
       let npos = (nbeat * 60 / this.$store.state.general.bpm / 100) + parseFloat(this.$store.state.general.beatoffset)
-      console.warn('nflag ' + beatinplayer + ' - ' + nbeat)
       this.song.seek(npos)
       this.$store.commit('general/iplaying', this.song.playing())
     },
