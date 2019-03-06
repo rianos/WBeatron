@@ -11,6 +11,7 @@
     "test": "echo \"No test specified\" && exit 0"
   },
   "dependencies": {
+    "clipboard-polyfill": "^2.7.0",
     "file-saver": "^2.0.1",
     "g": "^2.0.1",
     "howler": "^2.1.1",

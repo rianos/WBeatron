@@ -4,15 +4,19 @@
     <q-btn outline icon="save_alt" color="primary" label='Save Beats file' @click='save_beats' />
     <q-btn c outline icon="save_alt" color="tertiary" label='Save Web format' @click='save_web' />
     <q-btn c outline icon="file_copy" color="tertiary" label='Drop WBE file to clipboard' @click='save_web_clipboard' />
+    <br><br><textarea id='textc' contentEditable='true' readOnly='false' v-show='this.visible' v-model='webcontent'></textarea>
  </div>
 </template>
 
 <script>
 import { saveAs } from 'file-saver'
+import * as clipboard from 'clipboard-polyfill'
 export default {
   // name: 'ComponentName',
   data () {
     return {
+      visible: false,
+      webcontent: ''
     }
   },
   methods: {
@@ -46,13 +50,15 @@ export default {
     },
     save_web_clipboard () {
       let web = this.generate_wbe()
-      this.writeText(JSON.stringify(web))
+      this.visible = true
+      this.webcontent = JSON.stringify(web)
+      clipboard.writeText(this.webcontent)
     },
     save_web () {
       let web = this.generate_wbe()
       let filename = this.$store.state.general.songTitle.replace(/ /g, '-')
       filename = filename + '-web.wbe'
-      let blob = new Blob([JSON.stringify(web)], {type: 'text/plain;charset=utf8'})
+      let blob = new Blob([JSON.stringify(web)], {type: 'application/json;charset=utf8'})
       saveAs(blob, filename)
     },
     save_meta () {
