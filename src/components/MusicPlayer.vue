@@ -6,7 +6,7 @@
 <q-btn icon='pause_circle_filled' dense flat  size="2rem" color='primary' @click='stop' v-if='this.playing'>
   <q-tooltip :delay='1000'>Pause song</q-tooltip>
 </q-btn>
-<q-btn icon='replay_5' dense flat  size="2rem" color='blue-grey' @click='back5sec'>
+<q-btn icon='replay_5' dense flat  size="1.5rem" color='blue-grey' @click='back5sec'>
   <q-tooltip :delay='1000'>Rewind 5 seconds</q-tooltip>
 </q-btn>
 <q-btn icon='fast_rewind'  flat  size="1rem" color='blue-grey' @click='slower'>
@@ -19,6 +19,9 @@
   <q-tooltip :delay='1000' v-show='this.checked'>Beat Editor <b>DISABLED</b> when music is playing<br>Use this option if in mobile for performance reasons</q-tooltip>
   <q-tooltip :delay='1000' v-show='!this.checked'>Beat Editor <b>ENABLED</b> when music is playing<br>Recommended option in desktop</q-tooltip>
 </q-toggle>
+<q-btn icon='insert_chart'  flat   size="1rem" color='blue-grey' @click='gotochar'>
+  <q-tooltip :delay='1000'>Show target beat map</q-tooltip>
+</q-btn>
 <q-slider  v-model="selectedValue"  :min="0" :max="this.duration" :lavel-value='Math.round(this.selectedValue)' label-always @input="seek"/>
 </div>
 </template>
@@ -46,6 +49,9 @@ export default {
     }
   },
   methods: {
+    gotochar () {
+      this.$router.push('/beatmap')
+    },
     updateMobileView () {
       this.$store.commit('general/mobileView', this.checked)
     },

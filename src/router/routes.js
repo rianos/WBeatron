@@ -41,6 +41,13 @@ const routes = [
     children: [
       { path: '', component: () => import('pages/ImportExport.vue') }
     ]
+  },
+  {
+    path: '/beatmap/',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      { path: '', component: () => import('pages/BeatMapPage.vue') }
+    ]
   }
 ]
 

@@ -21,6 +21,7 @@
   <q-tabs animated inverted >
       <q-route-tab slot="title" icon="queue_music" to="/songdetails"  default hide="label" label="Song Details" />
       <q-route-tab slot="title" icon="audiotrack" to="/beatcoder"  hide="label" label="Beat Coder" />
+      <q-route-tab slot="title" icon="insert_chart" to="/beatmap"  hide="label" label="Beat Map" />
       <q-route-tab slot="title" icon="swap_horiz" to="/importexport"  hide="label" label="Import / Export" />
     </q-tabs>
   </q-layout-header>
